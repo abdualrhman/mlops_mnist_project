@@ -7,14 +7,14 @@ from src.data.make_dataset import CorruptMnist
 from src.models.model import Model
 
 
-wandb.init(project="mnist-project", entity="team-s20")
+# wandb.init(project="mnist-project", entity="team-s20")
 
 
-wandb.config = {
-    "learning_rate": 0.001,
-    "epochs": 100,
-    "batch_size": 128
-}
+# wandb.config = {
+#     "learning_rate": 0.001,
+#     "epochs": 100,
+#     "batch_size": 128
+# }
 
 
 def training() -> None:
@@ -27,7 +27,7 @@ def training() -> None:
 
     model = Model()
     model = model.to(device)
-    wandb.watch(model, log_freq=100)
+    # wandb.watch(model, log_freq=100)
     train_set = CorruptMnist(
         train=True, in_folder="../../data/raw", out_folder="../../data/processed")
     dataloader = torch.utils.data.DataLoader(train_set, batch_size=128)
@@ -45,14 +45,14 @@ def training() -> None:
             loss.backward()
             optimizer.step()
             loss_tracker.append(loss.item())
-            wandb.log({"loss": loss})
+            # wandb.log({"loss": loss})
         print(f"Epoch {epoch+1}/{n_epoch}. Loss: {loss}")
-    torch.save(model.state_dict(), "models/trained_model.pt")
+    # torch.save(model.state_dict(), "models/trained_model.pt")
 
     plt.plot(loss_tracker, "-")
     plt.xlabel("Training step")
     plt.ylabel("Training loss")
-    plt.savefig(f"reports/figures/training_curve.png")
+    # plt.savefig(f"reports/figures/training_curve.png")
 
 
 if __name__ == "__main__":
