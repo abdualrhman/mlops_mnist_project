@@ -7,9 +7,9 @@ RUN apt update && \
 
 RUN pip install dvc
 
-RUN dvc init --no-scm \
-    && dvc remote add -d remote_storage gs://mlops-mnist-project/ \
-    && dvc pull
+RUN dvc init --no-scm 
+RUN dvc remote add -d remote_storage gs://mlops-mnist-project/ 
+RUN dvc pull
 
 COPY requirements.txt requirements.txt
 COPY setup.py setup.py
